@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 //MIDDLEWARES
-app.use(clerkMiddleware())
+
 app.use(
     cors({
         origin: [
@@ -23,6 +23,8 @@ app.use(
     })
 ); //as the user will be found first then we use the JSON.
 app.use(express.json());
+
+app.use(clerkMiddleware());
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes)
 app.use("/api/result", resultRoutes);
