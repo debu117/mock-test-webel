@@ -13,7 +13,16 @@ const PORT = process.env.PORT || 8080;
 
 //MIDDLEWARES
 
-app.use(cors()); //as the user will be found first then we use the JSON.
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://mock-test-webel.vercel.app"
+    ],
+    credentials: true,
+  })
+); //as the user will be found first then we use the JSON.
 app.use(express.json());
 
 app.use(clerkMiddleware());
