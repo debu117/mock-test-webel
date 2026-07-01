@@ -10,20 +10,11 @@ import resultRoutes from './routes/result.js';
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 const app = express();
 const PORT = process.env.PORT || 8080;
-// MIDDLEWARES
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://mock-test-webel.vercel.app",
-      "https://mock-test-webel-2vta.vercel.app"
-    ],
-    credentials: true,
-  })
-);
+
+//MIDDLEWARES
+app.use(clerkMiddleware())
+app.use(cors()); //as the user will be found first then we use the JSON.
 app.use(express.json());
-app.use(clerkMiddleware());
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/result", resultRoutes);
